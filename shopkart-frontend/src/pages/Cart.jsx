@@ -1,15 +1,14 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CartItem from "../components/CartItem";
 import { useCart } from "../context/CartContext";
 
 function Cart() {
+    const navigate = useNavigate();
     const { cartItems, loading, error, totalItems, subtotal, fetchCart } = useCart();
-    const [checkoutNoticeVisible, setCheckoutNoticeVisible] = useState(false);
 
     const handleProceedToCheckout = () => {
-        setCheckoutNoticeVisible(true);
+        navigate("/checkout");
     };
 
     return (
@@ -101,27 +100,6 @@ function Cart() {
                                 >
                                     Proceed to Checkout
                                 </button>
-
-                                {checkoutNoticeVisible ? (
-                                    <div className="checkout-lab-notice" role="status">
-                                        <div className="notice-badge">Lab 06 Readiness</div>
-                                        <p>
-                                            <strong>Checkout is coming in Lab 06!</strong>
-                                        </p>
-                                        <p>
-                                            As specified in the lab roadmap, order creation and payment
-                                            processing will be introduced in Lab 06. Your cart items,
-                                            stock constraints, and subtotals are saved in MongoDB and ready.
-                                        </p>
-                                        <button
-                                            type="button"
-                                            className="notice-dismiss-btn"
-                                            onClick={() => setCheckoutNoticeVisible(false)}
-                                        >
-                                            Got it
-                                        </button>
-                                    </div>
-                                ) : null}
 
                                 <div className="summary-footer-links">
                                     <Link to="/products" className="continue-shopping-link">

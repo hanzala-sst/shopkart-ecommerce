@@ -63,6 +63,14 @@ function Navbar() {
                     >
                         Cart ({totalItems})
                     </button>
+
+                    <button
+                        type="button"
+                        className={`nav-link ${isActive("/orders") ? "active" : ""}`}
+                        onClick={() => navigate("/orders")}
+                    >
+                        Orders
+                    </button>
                 </div>
 
                 <button
